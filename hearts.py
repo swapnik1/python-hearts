@@ -1,4 +1,5 @@
 from Player import Player
+from Deck import Deck
 
 # Pick total number of players(4 or 5)
 # n = int(input("Total number of players? (4-5)"))
@@ -11,3 +12,9 @@ for i in range(n):
 	if not name:
 		name = "Player "+str(i+1)
 	players.append(Player(name))
+
+# Get a deck of cards
+deck = Deck()
+
+# Shuffle cards
+deck.shuffle()
