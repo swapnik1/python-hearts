@@ -28,6 +28,7 @@ class Trick:
 				self.suit=c.suit
 			s+=1
 
+		print(self)
 		return self.getWinner()
 
 	def getWinner(self):

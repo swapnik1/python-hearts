@@ -19,6 +19,10 @@ class Player:
 	def addCard(self, c:Card):
 		self.cards.append(c)
 
+	def addCards(self, cards:list):
+		self.cards+=cards
+		self.sortCards()
+
 	def sortCards(self):
 		self.cards.sort(key=lambda x: (x.suit, x.value))
 
@@ -43,3 +47,13 @@ class Player:
 			if x==c:
 				return True
 		return False
+
+	def getCardsToPass(self):
+		print(self)
+		to_pass = input("Select cards to pass :(For example : 1,2,3)")
+		to_pass = to_pass.split(",")
+		return [
+			self.cards[int(to_pass[0])],
+			self.cards[int(to_pass[1])],
+			self.cards[int(to_pass[2])]
+		]

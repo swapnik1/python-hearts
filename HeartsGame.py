@@ -38,25 +38,59 @@ class HeartsGame:
 				# players play cards, one player wins trick
 				start_pl = trick.play()
 
+				t_points = trick.points()
+
 				# Winner takes all the points of the trick
-				roundScores[start_pl] += trick.points()
+				roundScores[start_pl] += t_points
+
 				# End trick
+				print(self.players[start_pl].name+" got "+str(t_points)+" points\n")
 
 			# All cards played, End Round, Check for shoot the moon
+			shoot_moon_player = -1
 			if max(roundScores)==26:
 				for i,v in enumerate(roundScores):
 					if roundScores[i]==0:
 						roundScores[i]=26
 					else:
+						shoot_moon_player = i
 						roundScores[i]=0
 
 			# Update scores
 			for i,v in enumerate(roundScores):
 				self.scores[i]+=v
 
+			# Print status
+			print("Round #"+str(self.round_i)+"\n")
+			if shoot_moon_player!=-1:
+				print(self.players[p_i].name+" shot the moon!!")
+			for p_i,score in enumerate(roundScores):
+				print(self.players[p_i].name+" score: "+str(score)+"\n")
+			self.round_i+=1
+
 	def passCards(self, pass_direction):
 		if pass_direction == 0:
 			return
+
+		direction="right"
+		if pass_direction <0:
+			direction="left"
+
+		print("Passing cards "+str(abs(pass_direction))+ " to the "+direction+"\n")
+
+		target = [None]*self.n
+		# For each player, select cards to pass
+		for i,p in enumerate(self.players):
+			cardsToPass = p.getCardsToPass()
+			t = (i+pass_direction)%self.n
+			target[t]=cardsToPass
+
+			for c in cardsToPass:
+				p.playCard(c)
+
+		# add cards to receiving players hand
+		for t,cards in enumerate(target):
+			self.players[t].addCards(cards)
 
 
 	def distributeCards(self):
