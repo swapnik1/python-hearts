@@ -14,9 +14,9 @@ class Card:
 		self.suit = suit
 
 	def __repr__(self):
-		return self.getValue()+" of "+self.suit+"s"
+		return self.getValueName()+" of "+self.suit+"s"
 
-	def getValue(self):
+	def getValueName(self):
 		valMap = {
 			1:"A",
 			2:"2",
@@ -33,6 +33,11 @@ class Card:
 			13:"K"
 		}
 		return valMap[self.value]
+
+	def getValue():
+		if self.value==1:
+			return 14
+		return self.value
 
 	def __eq__(self,other):
 		if other==None:

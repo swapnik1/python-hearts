@@ -24,7 +24,7 @@ class Player:
 		self.sortCards()
 
 	def sortCards(self):
-		self.cards.sort(key=lambda x: (x.suit, x.value))
+		self.cards.sort(key=lambda x: (x.suit, x.getValue()))
 
 	def selectCardToPlay(self, trick_suit):
 		print(self)

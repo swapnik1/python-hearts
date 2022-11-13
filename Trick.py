@@ -35,8 +35,8 @@ class Trick:
 		highCard = 0
 		highPlayer = 0
 		for i,c in enumerate(self.trickCards):
-			if (c.suit==self.suit) and (c.value>highCard):
-				highCard=c.value
+			if (c.suit==self.suit) and (c.getValue()>highCard):
+				highCard=c.getValue()
 				highPlayer=i
 		# Winner is the player who went ith
 		return (self.start_i+highPlayer)%len(self.players)
